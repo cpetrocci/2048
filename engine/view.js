@@ -100,7 +100,6 @@ export default class GameView {
         let score_div = document.createElement('div');
         score_div.innerHTML = 'Score: ' + this.model.getGameState().score;
         score_div.classList.add('box');
-        score_div.classList.add('score');
         score_div.id = 'score';
         score_div.style.color = 'black'
         column_div.append(score_div);

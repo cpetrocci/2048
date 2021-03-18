@@ -24,11 +24,6 @@ export default class Game{
         }
         shuffle(value);
         this.gameState.board = value;
-        
-        
-        
-        
-
     }
 
     toString(){
@@ -73,7 +68,6 @@ export default class Game{
     getGameState() {
         return this.gameState;
     }
-
     move(direction) {
         let gameBoardCopy = [...this.gameState.board];
         if (this.gameState.over) {
@@ -141,10 +135,7 @@ export default class Game{
                     this.gameState.board[i] = this.gameState.board[toSwap];
                     this.gameState.board[toSwap] = temp;
                 }
-        }
-
-
-
+            }
         }
         if(direction == "down") {
             // First downshift
@@ -205,7 +196,6 @@ export default class Game{
                     this.gameState.board[toSwap] = temp;
                 }
             }
-
         }
         if(direction == "left") {
             // First leftshift
@@ -364,12 +354,12 @@ export default class Game{
         }
         this.gameState.board[indices[Math.floor(Math.random() * indices.length)]] = randomNum();
         // A successful move has occurred so I update the moveListeners
-        this.moveListeners.forEach(l => l(this.gameState));
+        this.moveListeners.forEach(l => l());
         // Checking if the win state has been changed
         if(this.gameState.board.includes(2048)) {
             this.gameState.won = true;
             this.gameState.over = true;
-            this.winListeners.forEach(l => l(this.gameState));
+            this.winListeners.forEach(l => l());
         }
         // Checking if the over state has been changed
         let full = true;
@@ -389,7 +379,7 @@ export default class Game{
         }
         if(!canMove && full) {
             this.gameState.over = true;
-            this.loseListeners.forEach(l => l(this.gameState));
+            this.loseListeners.forEach(l => l());
         }
         
     }
