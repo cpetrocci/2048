@@ -19,12 +19,13 @@ export default class GameView {
         for (let r=0; r<this.model.getSize(); r++) {
             let trow = document.createElement('tr');
             for (let c=0; c<this.model.getSize(); c++) {
-                let value = this.model.getGameState().board[c + (r*this.model.getSize())];
-                let tile = document.createElement('td');
-                let tile_view = document.createElement('div');
+                let index = c+(r*this.model.getSize());
+                let value = this.model.getGameState().board[index];
+                let tile = document.createElement('td'); // Creates tile
+                let tile_view = document.createElement('div'); // Create a tile_view div that hold the innerHTML and styling
                 tile_view.classList.add('tile');
                 tile_view.classList.add('is-size-3');
-                tile_view.id = `Tile-${c + (r*this.model.getSize())}`;
+                tile_view.id = `Tile-${index}`;
                 // add tile value to innerHTML and change background color based on tile value
                 if (value == 0) {
                     tile_view.innerHTML = '';
@@ -86,6 +87,9 @@ export default class GameView {
         button.innerHTML = 'Restart Game';
         button.style.margin = '0 auto';
         button.style.display = 'block'
+        // Adds eventlistener to detect when button is clicked
+        // Then resets the model gameState object to original state and restyles
+        // the intro div to original state
         button.addEventListener ('click', () => {
             model.setupNewGame()
             $(`#intro`).html('Combine the tiles to get 2048 and win!');
@@ -108,12 +112,14 @@ export default class GameView {
 
         // Adds a function to the move listeners in the model that re-renders the tiles with the correct value,
         // background color, and score
-        this.model.onMove(() => {
-            $('#score').html('Score: ' + this.model.getGameState().score);
+        this.model.onMove((gameState) => {
+            $('#score').html('Score: ' + gameState.score); // Updates score div by finding it with 'score' id
+            // Nested for loop similar to the first render except it changes the tile_view by its Tile-${index} id
             for (let r=0; r<this.model.getSize(); r++) {
                 for (let c=0; c<this.model.getSize(); c++) {
                     let index = (c + (r*this.model.getSize()));
-                    let value = this.model.getGameState().board[c + (r*this.model.getSize())];
+                    let value = gameState.board[c + (r*this.model.getSize())];
+                    // Updates tile html and background color
                     if (value == 0) {
                         $(`#Tile-${index}`).html('');
                         $(`#Tile-${index}`).css('background-color', 'rgba(238,228,218,0.35');
@@ -184,4 +190,3 @@ export default class GameView {
         return column_div;
     }
 }
-

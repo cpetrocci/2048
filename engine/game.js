@@ -354,7 +354,7 @@ export default class Game{
         }
         this.gameState.board[indices[Math.floor(Math.random() * indices.length)]] = randomNum();
         // A successful move has occurred so I update the moveListeners
-        this.moveListeners.forEach(l => l());
+        this.moveListeners.forEach(l => l(this.gameState));
         // Checking if the win state has been changed
         if(this.gameState.board.includes(2048)) {
             this.gameState.won = true;

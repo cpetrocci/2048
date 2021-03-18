@@ -14,5 +14,13 @@
     "jquery": "^3.6.0",
     "keypress": "^0.2.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cpetrocci/2048.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cpetrocci/2048/issues"
+  },
+  "homepage": "https://github.com/cpetrocci/2048#readme",
   "description": ""
 }
