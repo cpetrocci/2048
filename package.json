@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "console": "node run_in_console.js"
+    "start": "browser-sync -sw"
   },
   "author": "",
   "license": "ISC",
