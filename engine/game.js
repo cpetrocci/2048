@@ -20,7 +20,7 @@ export default class Game{
             value.push(0);
         }
         for (let i = 0; i < 2; i ++) {
-            value.push(randomNum());
+            value.push(1024);
         }
         shuffle(value);
         this.gameState.board = value;
