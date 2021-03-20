@@ -70,9 +70,6 @@ export default class Game{
     }
     move(direction) {
         let gameBoardCopy = [...this.gameState.board];
-        if (this.gameState.over) {
-            return;
-        }
         if(direction == "up") {
             //shift, combine, shift
 
